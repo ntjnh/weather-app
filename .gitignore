@@ -1,6 +1,7 @@
 node_modules/
 .DS_Store
 .vscode/
+build/
 dist/
 favicon.png
 src/js/weather-key.js
