@@ -1,7 +1,7 @@
 {
-  "name": "side-projects",
-  "version": "1.0.0",
-  "description": "",
+  "name": "weather-app",
+  "version": "2.0.0",
+  "description": "Weather app for temperature and current conditions",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
