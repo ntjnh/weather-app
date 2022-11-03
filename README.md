@@ -1,5 +1,7 @@
 # Weather App
 
+[![CodeFactor](https://www.codefactor.io/repository/github/ntjnh/weather-app/badge)](https://www.codefactor.io/repository/github/ntjnh/weather-app)
+
 A JS app for getting weather conditions for your geographic location or a location you've searched for.
 
 The app uses the Open Weather API for weather and location data.
