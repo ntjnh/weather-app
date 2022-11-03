@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Weather App</title>
+
+    <!-- Google Font Preconnects -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- Weather Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/weather-icons/2.0.9/css/weather-icons.min.css" type="text/css" />
+
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/6e2ccb04f1.js" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="build/css/app.css" />
+  </head>
+  <body>
+    <header class="header">
+      <h2 class="header__title"><a href="/">Side Projects</a></h2>
+
+      <ul class="nav">
+        <li class="nav-item">
+          <a class="nav-link text-black" href="https://natejonah.com" target="_blank">natejonah.com</a>
+        </li>
+      </ul>
+    </header>
+
+    <main class="weather">
+      <div class="page-header">
+        <h1>Weather App</h1>
+      </div>
+
+      <section class="location">
+        <div>
+          <form id="location-search">
+            <input type="text" placeholder="Enter a town or city" />
+            <button type="submit" aria-label="Search">Search</button>
+          </form>
+
+          <button class="geo-button" aria-label="Use my location">
+            <i class="fas fa-location-arrow"></i> Use my location
+          </button>
+        </div>
+      </section>
+
+      <section id="container">
+        <h2 id="location">Loading...</h2>
+
+        <p class="weather-icon">
+          <i class="wi"></i>
+        </p>
+
+        <h4 class="conditions"></h4>
+
+        <h2 id="cel"><span class="temp"></span> <span class="unit"></span></h2>
+
+        <h2 id="fah" class="d-none"><span class="f-temp"></span></h2>
+
+        <p class="temp-buttons">
+          <button class="f-button d-none">View as &deg;F</button>
+          <button class="c-button d-none">View as &deg;C</button>
+        </p>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p class="footer__copyright">&copy; Nate 2022.</p>
+
+      <p class="footer__social">
+        <a href="https://github.com/ntjnh" target="_blank">
+          <i class="bi-github" role="img" aria-label="GitHub"></i>
+        </a>
+      </p>
+    </footer>
+
+    <script src="build/js/app.js"></script>
+  </body>
+</html>
