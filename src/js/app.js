@@ -65,9 +65,6 @@ import appKey from "./weather-key";
         const lat = data[0].lat;
         const lon = data[0].lon;
 
-        console.log();
-        console.log(`${data[0].name}, ${data[0].state}, ${data[0].country}`);
-
         getWeather(lat, lon);
       })
       .catch(error => console.error('there was an error', error));
