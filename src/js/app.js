@@ -103,7 +103,13 @@ import appKey from "./weather-key";
         const lat = data[0].lat;
         const lon = data[0].lon;
 
-        getWeather(lat, lon);
+        const fullname = {
+          city: data[0].name,
+          state: data[0].state,
+          country: data[0].country
+        };
+
+        getWeather(lat, lon, fullname);
       })
       .catch(error => console.error('An error occured.', error));
   }
@@ -120,8 +126,8 @@ import appKey from "./weather-key";
   }
 
   // Get current weather with coordinates
-  function getWeather(latitude, longitude) {
-    const weatherData = "https://api.openweathermap.org/data/2.5/weather?lat=" + latitude + "&lon=" + longitude + "&appid=" + appKey;
+  function getWeather(latitude, longitude, name) {
+    const weatherData = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${appKey}`;
 
     fetch(weatherData)
       .then(response => response.json())
@@ -133,8 +139,10 @@ import appKey from "./weather-key";
         // convert kelvin temp to celsius
         const celsius = Math.round(weatherInfo.main.temp - 273.15);
 
+        const { city, state, country } = name;
+
         // Add weather info to the DOM
-        location.textContent = `${weatherInfo.name}, ${weatherInfo.sys.country}`;
+        location.textContent = `${city}, ${city == state ? '' : state + ', '}${country}`;
         temp.textContent = `${celsius}`;
         conditions.textContent = weatherInfo.weather[0].main;
         getIcon(weatherInfo.weather[0].id);
