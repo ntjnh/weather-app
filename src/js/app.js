@@ -67,7 +67,7 @@ import appKey from "./weather-key";
 
         getWeather(lat, lon);
       })
-      .catch(error => console.error('there was an error', error));
+      .catch(error => console.error('An error occured.', error));
   }
 
   // convert temp to fahrenheit
@@ -109,7 +109,7 @@ import appKey from "./weather-key";
         fahrenheitButton.classList.remove("d-none");
 
       })
-      .catch(error => console.error('there was an error', error));
+      .catch(error => console.error('An error occured.', error));
   }
 
   // Celsius & fahrenheit toggle
