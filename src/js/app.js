@@ -12,24 +12,12 @@ import appKey from "./weather-key";
   errorMessage = document.createElement("h3");
 
   // Get weather based on geo location
-  function useGeoLocation() {
-    if (navigator.geolocation) {
+  const geoButton = document.querySelector(".geo-button");
+  geoButton.addEventListener("click", () => {
+    
+    // Check if user's browser supports geolocation
+    if (!navigator.geolocation) {
 
-      // When location is successfully retrieved
-      const success = position => {
-
-        const lat = position.coords.latitude;
-        const lng = position.coords.longitude;
-
-        getWeather(lat, lng);
-
-      };
-
-      navigator.geolocation.getCurrentPosition(success);
-
-    } else if (!navigator.geolocation) {
-
-      // If user's browser doesn't support geolocation
       const subErrorMessage = document.createElement("h4");
 
       errorMessage.textContent = "Geolocation is not supported by your browser.";
@@ -39,11 +27,21 @@ import appKey from "./weather-key";
       container.appendChild(errorMessage);
       
       subErrorMessage.classList.add("error");
-    }
-  }
 
-  const geoButton = document.querySelector(".geo-button");
-  geoButton.addEventListener("click", useGeoLocation());
+    } else {
+
+      // When location is successfully retrieved
+      const success = position => {
+        const lat = position.coords.latitude;
+        const lng = position.coords.longitude;
+
+        getWeather(lat, lng);
+      };
+
+      navigator.geolocation.getCurrentPosition(success);
+    }
+
+  });
 
   const searchForm = document.getElementById("location-search");
   searchForm.addEventListener("submit", e => {
