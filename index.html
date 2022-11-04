@@ -15,26 +15,21 @@
     <!-- Weather Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/weather-icons/2.0.9/css/weather-icons.min.css" type="text/css" />
 
-    <!-- Font Awesome -->
+    <!-- Font Awesome 5.15.4 -->
     <script src="https://kit.fontawesome.com/6e2ccb04f1.js" crossorigin="anonymous"></script>
 
     <link rel="stylesheet" href="build/css/app.css" />
   </head>
   <body>
     <header class="header">
-      <h2 class="header__title"><a href="/">Side Projects</a></h2>
+      <h1 class="header__title"><a href="/">Weather App</a></h1>
 
-      <ul class="nav">
-        <li class="nav-item">
-          <a class="nav-link text-black" href="https://natejonah.com" target="_blank">natejonah.com</a>
-        </li>
-      </ul>
+      <a class="header__gh" href="https://github.com/ntjnh/weather-app" aria-label="GitHub" target="_blank">
+        <i class="fab fa-github"></i>
+      </a>
     </header>
 
     <main class="weather">
-      <div class="page-header">
-        <h1>Weather App</h1>
-      </div>
 
       <section class="location">
         <div>
@@ -56,7 +51,7 @@
           <i class="wi"></i>
         </p>
 
-        <h4 class="conditions"></h4>
+        <h3 class="conditions"></h3>
 
         <h2 id="cel"><span class="temp"></span> <span class="unit"></span></h2>
 
@@ -67,16 +62,12 @@
           <button class="c-button d-none">View as &deg;C</button>
         </p>
       </section>
+
     </main>
 
     <footer class="footer">
       <p class="footer__copyright">&copy; Nate 2022.</p>
-
-      <p class="footer__social">
-        <a href="https://github.com/ntjnh" target="_blank">
-          <i class="bi-github" role="img" aria-label="GitHub"></i>
-        </a>
-      </p>
+      <a class="website-link" href="https://natejonah.com" target="_blank">natejonah.com</a>
     </footer>
 
     <script src="build/js/app.js" type="module"></script>
