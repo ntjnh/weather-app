@@ -8,7 +8,7 @@ const cleanCSS = require("gulp-clean-css");
 const browserSync = require("browser-sync").create();
 
 function js() {
-  return src("./src/js/*.js")
+  return src("./src/js/app.js")
     .pipe(babel())
     .pipe(dest("build/js"));
 }
