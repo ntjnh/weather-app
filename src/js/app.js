@@ -43,15 +43,53 @@ import appKey from "./weather-key";
 
   });
 
+  // Toggle show/hide classes on weather info elements
+  function toggle(action) {
+    const icon = document.querySelector(".weather-icon");
+    const info = [icon, conditions, celsius, fahrenheit, tempButtons];
+
+    for (let i = 0; i < info.length; i++) {
+      if (action === "show") {
+        info[i].classList.remove("hide");
+      } else {
+        info[i].classList.remove("show");
+      }
+
+      info[i].classList.add(action);
+    }
+  }
+
+  // Hide fields and display error message
+  function validation() {
+    // If the text is already there, only change the font colour
+    if (!location.textContent.startsWith("Please enter a place name")) {
+      location.innerHTML = `Please enter a place name or <br> click the 'Use my location' button.`;
+    }
+
+    location.style.color = "#cf2727";
+
+    toggle("hide");
+  }
+
+  // Get location based on search term
   const searchForm = document.getElementById("location-search");
   searchForm.addEventListener("submit", e => {
     e.preventDefault();
 
     const searchTerm = e.target[0].value;
 
-    search(searchTerm);
+    if (!searchTerm) {
 
-    e.target[0].value = "";
+      validation();
+    } else {
+      search(searchTerm);
+
+      if (location.style.color == "rgb(207, 39, 39)") {
+        location.style.color = "#222";
+      }
+
+      e.target[0].value = "";
+    }
   });
 
   function search(place) {
@@ -107,6 +145,8 @@ import appKey from "./weather-key";
 
         // Show unit conversion button
         fahrenheitButton.classList.remove("d-none");
+
+        toggle("show");
 
       })
       .catch(error => console.error('An error occured.', error));
