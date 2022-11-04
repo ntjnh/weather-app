@@ -50,6 +50,8 @@ import appKey from "./weather-key";
     const searchTerm = e.target[0].value;
 
     search(searchTerm);
+
+    e.target[0].value = "";
   });
 
   function search(place) {
