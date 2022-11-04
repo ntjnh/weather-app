@@ -100,7 +100,7 @@ import appKey from "./weather-key";
 
         // Add weather info to the DOM
         location.textContent = `${weatherInfo.name}, ${weatherInfo.sys.country}`;
-        temp.textContent = `${celsius} °C`;
+        temp.textContent = `${celsius}`;
         conditions.textContent = weatherInfo.weather[0].main;
         getIcon(weatherInfo.weather[0].id);
 
