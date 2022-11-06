@@ -87,6 +87,7 @@ import appKey from "./weather-key";
     }
   });
 
+  // Get coordinates for searched place and call getWeather
   function search(place) {
     const locationData = `https://api.openweathermap.org/geo/1.0/direct?q=${place}&limit=5&appid=${appKey}`;
 
@@ -109,7 +110,7 @@ import appKey from "./weather-key";
       .catch(error => console.error('An error occured.', error));
   }
 
-  // convert temp to fahrenheit
+  // Convert celsius to fahrenheit
   function getFahrenheit(celsius) {
     return Math.round(celsius * 9 / 5 + 32);
   }
@@ -132,7 +133,7 @@ import appKey from "./weather-key";
         const temp = document.querySelector(".c-temp");
         const fTemp = document.querySelector(".f-temp");
 
-        // convert kelvin temp to celsius
+        // Convert kelvin to celsius
         const celsius = Math.round(weatherInfo.main.temp - 273.15);
 
         const { city, state, country } = name;
