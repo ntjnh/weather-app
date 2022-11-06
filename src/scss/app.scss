@@ -25,6 +25,9 @@ $grey: #808080;
 $red: #cf2727;
 $white: #fff;
 
+* {
+    box-sizing: border-box;
+}
 
 body {
     font-family: $primary-font;
