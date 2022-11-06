@@ -23,6 +23,11 @@ function scss() {
     .pipe(browserSync.stream());
 }
 
+function fonts() {
+  return src("src/fonts/**/*")
+    .pipe(dest("build/fonts"));
+}
+
 function bSync() {
   browserSync.init({
     server: {
@@ -45,8 +50,9 @@ function watchSCSS() {
 }
 
 module.exports = {
-  default: series(scss, js),
+  default: series(scss, fonts, js),
   sass: scss,
+  fonts: fonts,
   js: js,
   serve: bSync,
   watch: parallel(watchSCSS, watchJS),
