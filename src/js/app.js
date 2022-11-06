@@ -4,11 +4,6 @@ import appKey from "./weather-key";
   const container = document.getElementById("container"),
   location = document.getElementById("location"),
   conditions = document.querySelector(".conditions"),
-  celsius = document.getElementById("cel"),
-  fahrenheit = document.getElementById("fah"),
-  tempButtons = document.querySelector(".temp-buttons"),
-  fahrenheitButton = document.querySelector(".f-button"),
-  celsiusButton = document.querySelector(".c-button"),
   errorMessage = document.createElement("h3");
 
   // Get weather based on geo location
@@ -46,7 +41,8 @@ import appKey from "./weather-key";
   // Toggle show/hide classes on weather info elements
   function toggle(action) {
     const icon = document.querySelector(".weather-icon");
-    const info = [icon, conditions, celsius, fahrenheit, tempButtons];
+    const temperatures = document.querySelector(".temperatures");
+    const info = [icon, conditions, temperatures];
 
     for (let i = 0; i < info.length; i++) {
       if (action === "show") {
@@ -79,7 +75,6 @@ import appKey from "./weather-key";
     const searchTerm = e.target[0].value;
 
     if (!searchTerm) {
-
       validation();
     } else {
       search(searchTerm);
@@ -134,7 +129,8 @@ import appKey from "./weather-key";
       .then(data => {
 
         const weatherInfo = data;
-        const temp = document.querySelector(".temp");
+        const temp = document.querySelector(".c-temp");
+        const fTemp = document.querySelector(".f-temp");
 
         // convert kelvin temp to celsius
         const celsius = Math.round(weatherInfo.main.temp - 273.15);
@@ -144,26 +140,14 @@ import appKey from "./weather-key";
         // Add weather info to the DOM
         location.textContent = `${city}, ${city == state ? '' : state + ', '}${country}`;
         temp.textContent = `${celsius}`;
+        fTemp.textContent = `${getFahrenheit(celsius)}`;
         conditions.textContent = weatherInfo.weather[0].main;
         getIcon(weatherInfo.weather[0].id);
-
-        // Convert temperature to fahrenheit
-        const fTemp = document.querySelector(".f-temp");
-        fTemp.textContent = `${getFahrenheit(celsius)} °F`;
-
-        // Show unit conversion button
-        fahrenheitButton.classList.remove("d-none");
 
         toggle("show");
 
       })
       .catch(error => console.error('An error occured.', error));
   }
-
-  // Celsius & fahrenheit toggle
-  tempButtons.addEventListener("click", () => {
-    const tempElements = [fahrenheit, celsius, fahrenheitButton, celsiusButton];
-    tempElements.forEach(el => el.classList.toggle("d-none"));
-  });
 
 })();

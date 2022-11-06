@@ -149,6 +149,19 @@ main {
     
     h2 {
         font-weight: $light;
+
+            &.temperature {
+                display: inline-block;
+                position: relative;
+
+                .temp-pipe {
+                    font-size: 1.5rem;
+                    font-weight: $reg;
+                    padding: 0 .5rem;
+                    position: relative;
+                    top: -4px;
+                }
+            }
     }
 
     h4 {
