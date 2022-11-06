@@ -4,6 +4,6 @@ node_modules/
 build/
 dist/
 favicon.png
-src/js/weather-key.js
+src/js/modules/weather-key.js
 src/scss/weather-icons/
 src/fonts/weather-icons/
