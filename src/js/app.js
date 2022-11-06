@@ -121,13 +121,34 @@ import appKey from "/src/js/weather-key.js";
     document.querySelector(".weather-icon i").classList.add(iconClass);
   }
 
+  function loader() {
+
+    const results = document.querySelector(".results-container");
+    const loadingSection = document.querySelector(".loading");
+
+    // Toggle the loader
+    loadingSection.classList.toggle("show");
+    loadingSection.classList.toggle("hide");
+
+    // Toggle the results container
+    results.classList.toggle("show");
+    results.classList.toggle("hide");
+
+  }
+
   // Get current weather with coordinates
   function getWeather(latitude, longitude, name) {
     const weatherData = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${appKey}`;
 
+    // Show loader as soon as the funtion is called
+    loader();
+
     fetch(weatherData)
       .then(response => response.json())
       .then(data => {
+
+        // Hide loader when data is received
+        loader();
 
         const weatherInfo = data;
         const temp = document.querySelector(".c-temp");
