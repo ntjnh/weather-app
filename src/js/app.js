@@ -1,4 +1,4 @@
-import appKey from "./weather-key";
+import appKey from "/src/js/weather-key.js";
 
 (function() {
   const locationHeading = document.getElementById("location"),
