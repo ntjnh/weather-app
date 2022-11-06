@@ -1,10 +1,8 @@
 import appKey from "./weather-key";
 
 (function() {
-  const container = document.getElementById("container"),
-  location = document.getElementById("location"),
-  conditions = document.querySelector(".conditions"),
-  errorMessage = document.createElement("h3");
+  const locationHeading = document.getElementById("location"),
+  conditions = document.querySelector(".conditions");
 
   // Get weather based on geo location
   const geoButton = document.querySelector(".geo-button");
@@ -13,13 +11,15 @@ import appKey from "./weather-key";
     // Check if user's browser supports geolocation
     if (!navigator.geolocation) {
 
-      const subErrorMessage = document.createElement("h4");
+      const errorMessage = document.createElement("h3"),
+      subErrorMessage = document.createElement("h4");
 
       errorMessage.textContent = "Geolocation is not supported by your browser.";
       subErrorMessage.textContent = "Please allow location access.";
 
-      container.appendChild(subErrorMessage);
-      container.appendChild(errorMessage);
+      const resultsContainer = document.querySelector(".results-container");
+      resultsContainer.appendChild(subErrorMessage);
+      resultsContainer.appendChild(errorMessage);
       
       subErrorMessage.classList.add("error");
 
@@ -58,11 +58,11 @@ import appKey from "./weather-key";
   // Hide fields and display error message
   function validation() {
     // If the text is already there, only change the font colour
-    if (!location.textContent.startsWith("Please enter a place name")) {
-      location.innerHTML = `Please enter a place name or <br> click the 'Use my location' button.`;
+    if (!locationHeading.textContent.startsWith("Please enter a place name")) {
+      locationHeading.innerHTML = `Please enter a place name or <br> click the 'Use my location' button.`;
     }
 
-    location.style.color = "#cf2727";
+    locationHeading.style.color = "#cf2727";
 
     toggle("hide");
   }
@@ -79,8 +79,8 @@ import appKey from "./weather-key";
     } else {
       search(searchTerm);
 
-      if (location.style.color == "rgb(207, 39, 39)") {
-        location.style.color = "#222";
+      if (locationHeading.style.color == "rgb(207, 39, 39)") {
+        locationHeading.style.color = "#222";
       }
 
       e.target[0].value = "";
@@ -139,7 +139,7 @@ import appKey from "./weather-key";
         const { city, state, country } = name;
 
         // Add weather info to the DOM
-        location.textContent = `${city}, ${city == state ? '' : state + ', '}${country}`;
+        locationHeading.textContent = `${city}, ${city == state ? '' : state + ', '}${country}`;
         temp.textContent = `${celsius}`;
         fTemp.textContent = `${getFahrenheit(celsius)}`;
         conditions.textContent = weatherInfo.weather[0].main;
