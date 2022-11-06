@@ -5,3 +5,5 @@ build/
 dist/
 favicon.png
 src/js/weather-key.js
+src/scss/weather-icons/
+src/fonts/weather-icons/
