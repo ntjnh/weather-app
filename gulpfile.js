@@ -36,13 +36,13 @@ function bSync() {
     https: true,
   });
 
-  watch("./src/js/app.js").on("change", series(js, browserSync.reload));
+  watch("./src/js/**/*.js").on("change", series(js, browserSync.reload));
   watch("./src/scss/app.scss", scss);
   watch("./index.html").on("change", browserSync.reload);
 }
 
 function watchJS() {
-  watch("./src/js/app.js", js);
+  watch("./src/js/**/*.js", js);
 }
 
 function watchSCSS() {
