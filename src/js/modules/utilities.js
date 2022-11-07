@@ -33,7 +33,15 @@ function getFahrenheit(celsius) {
 // Get weather icon and add to DOM
 function getIcon(id) {
   const iconClass = `wi-owm-${id}`;
-  document.querySelector(".weather-icon i").classList.add(iconClass);
+  const iconEl = document.querySelector(".weather-icon i");
+
+  const classToRemove = iconEl.classList.item(1);
+
+  if (classToRemove) {
+    iconEl.classList.remove(classToRemove);
+  }
+
+  iconEl.classList.add(iconClass);
 }
 
 // Toggle show/hide classes on weather info elements
