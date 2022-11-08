@@ -25,7 +25,7 @@ export default function (latitude, longitude, name) {
       const { city, state, country } = name;
 
       // Add weather info to the DOM
-      locationHeading.textContent = `${city}, ${city == state ? '' : state + ', '}${country}`;
+      locationHeading.textContent = `${city}, ${(city == state) || !state ? '' : state + ', '}${country}`;
       temp.textContent = `${celsius}`;
       fTemp.textContent = `${getFahrenheit(celsius)}`;
       conditions.textContent = weatherInfo.weather[0].main;
