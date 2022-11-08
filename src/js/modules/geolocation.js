@@ -1,3 +1,4 @@
+import appKey from "./weather-key.js";
 import getWeather from "./getWeather.js";
 
 const geoButton = document.querySelector(".geo-button");
@@ -26,7 +27,22 @@ function getGeolocation() {
       const lat = position.coords.latitude;
       const lng = position.coords.longitude;
 
-      getWeather(lat, lng);
+      const location = `https://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lng}&limit=1&appid=${appKey}`;
+
+      fetch(location)
+        .then(response => response.json())
+        .then(data => {
+          
+          const fullname = {
+            city: data[0].name,
+            state: data[0].state,
+            country: data[0].country
+          };
+
+          getWeather(lat, lng, fullname);
+        })
+        .catch(error => console.error('An error occured.', error));
+
     };
 
     navigator.geolocation.getCurrentPosition(success);
