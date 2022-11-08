@@ -185,12 +185,12 @@ main {
 
         .loading {
             &__spinner {
-                display: inline-block;
-                font-size: 2rem;
                 animation-name: spin-loader;
                 animation-duration: 1s;
                 animation-iteration-count: infinite;
                 animation-timing-function: linear;
+                display: inline-block;
+                line-height: 1;
 
                 svg {
                     fill: $black;
@@ -200,8 +200,9 @@ main {
             }
 
             &__text {
-                letter-spacing: 1px;
                 font-weight: $light;
+                letter-spacing: 1px;
+                margin-top: 1rem;
             }
         }
         
