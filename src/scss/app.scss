@@ -110,8 +110,13 @@ a {
         right: 1.5rem;
         top: 1.5rem;
 
-        &:hover {
-            color: $blue;
+        svg {
+            height: auto;
+            width: 24px;
+    
+            &:hover {
+                fill: $blue;
+            }
         }
     }
 }
@@ -162,14 +167,17 @@ main {
                     color: $white;
                     margin-top: .875rem;
                     padding: .5rem .75rem;
+                    position: relative;
                     width: 100%;
 
-                    &:hover {
-                        background-color: $blue;
-                    }
-
-                    i {
+                    svg {
+                        display: inline-block;
+                        fill: $white;
+                        height: 18px;
                         margin-right: .375rem;
+                        position: relative;
+                        top: 3px;
+                        width: 18px;
                     }
                 }
             }
@@ -183,6 +191,12 @@ main {
                 animation-duration: 1s;
                 animation-iteration-count: infinite;
                 animation-timing-function: linear;
+
+                svg {
+                    fill: $black;
+                    height: 40px;
+                    width: 40px;
+                }
             }
 
             &__text {
