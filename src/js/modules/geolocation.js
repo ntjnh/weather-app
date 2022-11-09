@@ -1,9 +1,12 @@
 import appKey from "./weather-key.js";
 import getWeather from "./getWeather.js";
+import { loader } from "./utilities.js";
 
 const geoButton = document.querySelector(".geo-button");
 
 function getGeolocation() {
+
+  loader();
   
   // Check if user's browser supports geolocation
   if (!navigator.geolocation) {

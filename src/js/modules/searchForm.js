@@ -1,4 +1,4 @@
-import { locationHeading } from "./utilities.js"
+import { locationHeading, loader } from "./utilities.js"
 import search from "./search.js";
 
 // Get location based on search term
@@ -19,6 +19,9 @@ function validation() {
 
 function formSubmit (e) {
   e.preventDefault();
+
+  // Show loader as soon as the function is called
+  loader();
 
   const searchTerm = e.target[0].value;
 

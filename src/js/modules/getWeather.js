@@ -5,9 +5,6 @@ import { locationHeading, conditions, loader, getFahrenheit, getIcon, toggle } f
 export default function (latitude, longitude, name) {
   const weatherData = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${appKey}`;
 
-  // Show loader as soon as the funtion is called
-  loader();
-
   fetch(weatherData)
     .then(response => response.json())
     .then(data => {
