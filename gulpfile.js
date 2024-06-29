@@ -4,7 +4,6 @@ const { dest, parallel, series, src, watch } = require("gulp");
 const babel = require("gulp-babel");
 const sass = require("gulp-sass")(require("sass"));
 const cleanCSS = require("gulp-clean-css");
-const browserSync = require("browser-sync").create();
 
 function js() {
   return src("./src/js/**/*.js")
@@ -16,26 +15,12 @@ function scss() {
   return src("src/scss/app.scss")
     .pipe(sass().on("error", sass.logError))
     .pipe(cleanCSS())
-    .pipe(dest("build/css"))
-    .pipe(browserSync.stream());
+    .pipe(dest("build/css"));
 }
 
 function fonts() {
   return src("src/fonts/**/*")
     .pipe(dest("build/fonts"));
-}
-
-function bSync() {
-  browserSync.init({
-    server: {
-      baseDir: "./",
-    },
-    https: true,
-  });
-
-  watch("./src/js/**/*.js").on("change", series(js, browserSync.reload));
-  watch("./src/scss/app.scss", scss);
-  watch("./index.html").on("change", browserSync.reload);
 }
 
 function watchJS() {
@@ -51,6 +36,5 @@ module.exports = {
   sass: scss,
   fonts: fonts,
   js: js,
-  serve: bSync,
   watch: parallel(watchSCSS, watchJS),
 };
