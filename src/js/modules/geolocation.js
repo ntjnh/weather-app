@@ -1,4 +1,4 @@
-import appKey from "./weather-key.js";
+const appKey = process.env.APP_KEY;
 import getWeather from "./getWeather.js";
 import { loader } from "./utilities.js";
 
