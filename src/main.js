@@ -7,6 +7,3 @@ geoButton.addEventListener('click', getGeolocation)
 
 // Get location based on search term
 searchForm.addEventListener('submit', formSubmit)
-
-console.log(`APP_KEY:`)
-console.log(import.meta.env.APP_KEY)
