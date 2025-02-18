@@ -1,4 +1,4 @@
-const appKey = process.env.APP_KEY;
+const appKey = import.meta.env.APP_KEY;
 import { locationHeading, conditions, loader, getFahrenheit, getIcon, toggle } from "./utilities.js";
 
 // Get current weather with coordinates
