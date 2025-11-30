@@ -1,4 +1,4 @@
-const appKey = process.env.APP_KEY;
+const appKey = import.meta.env.VITE_APP_KEY;
 import getWeather from "./getWeather.js";
 
 // Get the coordinates for the searched place and call the getWeather() function
