@@ -1,56 +1,51 @@
-const appKey = import.meta.env.VITE_APP_KEY;
-import getWeather from "./getWeather.js";
-import { loader } from "./utilities.js";
+const appKey = import.meta.env.VITE_APP_KEY
+import getWeather from './getWeather.js'
+import { loader } from './utilities.js'
 
-const geoButton = document.querySelector(".geo-button");
+const geoButton = document.querySelector('.geo-button')
 
 function getGeolocation() {
-
-  loader();
+    loader()
   
-  // Check if user's browser supports geolocation
-  if (!navigator.geolocation) {
+    // Check if user's browser supports geolocation
+    if (!navigator.geolocation) {
+        const errorMessage = document.createElement('h3')
+        const subErrorMessage = document.createElement('h4')
 
-    const errorMessage = document.createElement("h3"),
-    subErrorMessage = document.createElement("h4");
+        errorMessage.textContent = 'Geolocation is not supported by your browser.'
+        subErrorMessage.textContent = 'Please allow location access.'
 
-    errorMessage.textContent = "Geolocation is not supported by your browser.";
-    subErrorMessage.textContent = "Please allow location access.";
+        const resultsContainer = document.querySelector('.results-container')
+        resultsContainer.appendChild(subErrorMessage)
+        resultsContainer.appendChild(errorMessage)
+        
+        subErrorMessage.classList.add('error')
+    } else {
 
-    const resultsContainer = document.querySelector(".results-container");
-    resultsContainer.appendChild(subErrorMessage);
-    resultsContainer.appendChild(errorMessage);
-    
-    subErrorMessage.classList.add("error");
+        // When location is successfully retrieved
+        const success = position => {
+            const lat = position.coords.latitude
+            const lng = position.coords.longitude
 
-  } else {
+            const location = `https://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lng}&limit=1&appid=${appKey}`
 
-    // When location is successfully retrieved
-    const success = position => {
-      const lat = position.coords.latitude;
-      const lng = position.coords.longitude;
+            fetch(location)
+                .then(response => response.json())
+                .then(data => {
+                
+                    const fullname = {
+                        city: data[0].name,
+                        state: data[0].state,
+                        country: data[0].country
+                    }
 
-      const location = `https://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lng}&limit=1&appid=${appKey}`;
+                    getWeather(lat, lng, fullname)
+                })
+                .catch(error => console.error('An error occured.', error))
+        }
 
-      fetch(location)
-        .then(response => response.json())
-        .then(data => {
-          
-          const fullname = {
-            city: data[0].name,
-            state: data[0].state,
-            country: data[0].country
-          };
-
-          getWeather(lat, lng, fullname);
-        })
-        .catch(error => console.error('An error occured.', error));
-
-    };
-
-    navigator.geolocation.getCurrentPosition(success);
-  }
-
+        navigator.geolocation.getCurrentPosition(success)
+    }
 }
 
-export { geoButton, getGeolocation };
+export { geoButton, getGeolocation }
